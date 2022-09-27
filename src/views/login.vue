@@ -39,15 +39,14 @@ const password = ref<string>("");
 
 
 function login() {
-  const loginInfo =JSON.stringify({'name':name.value,'password':password.value});
-  console.log(loginInfo);
-  axios.post(BASEURL+ApiList.LoginUrl,qs.stringify(loginInfo))
+  const loginInfo =JSON.stringify({'username':name.value,'password':password.value});
+  axios.post(BASEURL+ApiList.LoginUrl,qs.stringify({'loginInfo':loginInfo}))
       .then((result: ResponseBody) => {
         console.log(result);
-        if(result.code == 1) {
-          ElMessage.success(result.message);
+        if(result.data.code == 1) {
+          ElMessage.success(result.data.message);
         } else {
-          ElMessage.error(result.message);
+          ElMessage.error(result.data.message);
         }
 
       })
