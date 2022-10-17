@@ -8,7 +8,7 @@
             <el-row justify="center">
               <el-space direction="vertical">
                 <span>账号</span><el-input v-model="name"></el-input>
-                <span>密码</span><el-input v-model="password"></el-input>
+                <span>密码</span><el-input v-model="password" type="password"></el-input>
               </el-space>
             </el-row>
 
@@ -33,6 +33,7 @@ import axios from "axios";
 import {BASEURL,ApiList} from "@/common";
 import {ElMessage} from "element-plus";
 import qs from "qs";
+import router from "@/router";
 
 const name = ref<string>("");
 const password = ref<string>("");
@@ -45,6 +46,7 @@ function login() {
         console.log(result);
         if(result.data.code == 1) {
           ElMessage.success(result.data.message);
+          router.push("/home");
         } else {
           ElMessage.error(result.data.message);
         }
