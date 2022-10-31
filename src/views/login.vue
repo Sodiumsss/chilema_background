@@ -43,7 +43,7 @@ function login() {
   const loginInfo =JSON.stringify({'username':name.value,'password':password.value});
   axios.post(BASEURL+ApiList.LoginUrl,qs.stringify({'loginInfo':loginInfo}))
       .then((result: ResponseBody) => {
-        console.log(result);
+        //console.log(result);
         if(result.data.code == 1) {
           ElMessage.success(result.data.message);
           router.push("/home");
