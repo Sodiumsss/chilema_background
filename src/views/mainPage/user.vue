@@ -1,8 +1,9 @@
 <template>
-  <el-button type="danger">批量删除</el-button>
+  <el-button type="danger" @click="mul_deleteUserDialogVisible=true">批量删除</el-button>
   <!-- <el-button type="primary" @click="addUserDialogVisible = true">新增用户</el-button> -->
   <el-input class="search-area" v-model="search" placeholder="输入用户名进行搜索" />
-  <el-table :data="filterTableData" style="width: 100%">
+  <el-table :data="filterTableData" style="width: 100%" @selection-change="handleSelectionChange">
+    <el-table-column type="selection" width="55" align="center" />
     <el-table-column prop="username" label="用户名" width="180" />
     <el-table-column prop="password" label="密码" width="180" />
     <el-table-column prop="schoolId" label="学号" width="180" />
@@ -15,7 +16,7 @@
     <el-table-column prop="birthYear" label="生日" width="180" />
     <el-table-column prop="nickname" label="昵称" width="180" />
     <el-table-column prop="credit" label="积分" width="180" />
-    <el-table-column label="修改" align="center">
+    <el-table-column label="操作" align="center">
       <template #default="scope">
         <el-button type="primary" @click="handleEdit(scope.row.id, scope.row)">编辑</el-button>
         <el-button type="danger" @click="handleDelete(scope.row.id)">删除</el-button>
@@ -66,6 +67,17 @@
       </span>
     </template>
   </el-dialog>
+  <!-- 批量删除对话框 -->
+  <el-dialog v-model="mul_deleteUserDialogVisible" title="删除用户" width="25%" align-center>
+    确认要删除吗？？？
+    <template #footer>
+      <span class="dialog-footer">
+        <el-button @click="mul_deleteUserDialogVisible = false">取消</el-button>
+        <el-button type="danger" @click="mulDelete">确认删除</el-button>
+      </span>
+    </template>
+  </el-dialog>
+
 </template>
 
 <script lang="ts" setup>
@@ -192,6 +204,21 @@ function deleteUserInfo() {
       ElMessage.error("找不到服务捏~");
     })
 }
+
+const mul_deleteUserDialogVisible = ref(false);
+const mul_list = ref([]);
+function mulDelete() {
+  for(let item of mul_list.value) {
+    delete_id.value = item.id;
+    deleteUserInfo();
+  }
+  mul_deleteUserDialogVisible.value = false;
+}
+
+function handleSelectionChange(val) {
+  mul_list.value = val;
+}
+
 </script>
 
 <style scoped>
