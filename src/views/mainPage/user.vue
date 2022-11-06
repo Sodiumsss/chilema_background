@@ -9,7 +9,7 @@
     <el-table-column prop="schoolId" label="学号" width="180" />
     <el-table-column prop="sex" label="性别" width="180">
       <template #default="scope">
-        <span v-if="scope.row.sex == 1">男</span>
+        <span v-if="scope.row.sex === 1">男</span>
         <span v-else>女</span>
       </template>
     </el-table-column>
@@ -119,7 +119,7 @@ function getUserList() {
 axios.post(BASEURL + ApiList.UserListUrl)
   .then((result: ResponseBody) => {
     user_data.value = result.data.data;
-    console.log(result.data.data);
+    //console.log(result.data.data);
   })
   .catch(() => {
     ElMessage.error("找不到服务捏~");
