@@ -46,7 +46,7 @@ function login() {
         //console.log(result);
         if(result.data.code == 1) {
           ElMessage.success(result.data.message);
-          router.push("/index");
+          router.push("/count");
         } else {
           ElMessage.error(result.data.message);
         }

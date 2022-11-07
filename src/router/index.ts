@@ -13,8 +13,8 @@ const routes: Array<RouteRecordRaw> = [
     component: () => import('../views/home.vue'),
     children: [
       {
-        path: "/index",
-        component: () => import('../views/mainPage/index.vue'),
+        path: "/count",
+        component: () => import('../views/mainPage/count.vue'),
       },
       {
         path: "/user",

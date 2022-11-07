@@ -1,8 +1,8 @@
 <template>
-  <el-menu default-active="/index" router>
-    <el-menu-item index="/index">
-      <el-icon><House /></el-icon>
-      <span>首页</span>
+  <el-menu default-active="/count" router>
+    <el-menu-item index="/count">
+      <el-icon><Histogram /></el-icon>
+      <span>数据统计</span>
     </el-menu-item>
     <el-menu-item index="/user">
       <el-icon><UserFilled /></el-icon>

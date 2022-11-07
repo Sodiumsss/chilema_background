@@ -12,5 +12,7 @@ export const enum ApiList {
     deleteFoodUrl = "/api/food/delete",
     uploadFoodImgUrl = "/api/food/upload",
     uploadImgByIdUrl = "/api/food/uploadById",
+
+    userCountUrl = "/api/user/count",
 }
 
